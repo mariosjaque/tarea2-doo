@@ -6,4 +6,11 @@ public class Empleado {
     private String nombre;
     private String correo;
 
+    public String getNombre(){
+        return nombre;
+    }
+    public String getApellidos(){
+        return apellidos;
+    }
+
 }
