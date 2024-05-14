@@ -1,12 +1,12 @@
 package doo.tarea2;
 
-import java.util.ArrayList;
 
 public class Asistencia {
-
-    private ArrayList<String> Lista;
-
-    public ArrayList<String> getLista(){
-        return Lista;
+    private Empleado empleado;
+    public Asistencia(Empleado empleado) {
+        this.empleado = empleado;
+    }
+    public Empleado getEmpleado() {
+        return empleado;
     }
 }
