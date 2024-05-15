@@ -56,13 +56,4 @@ public class Reunion {
         horaFin = Instant.now();
         System.out.println("La reunio finalizo a las "+horaFin);
     }
-    public Instant gethoraInicio(){
-        return horaInicio;
-    }
-    public Instant gethoraFin(){
-        return horaFin;
-    }
-    public Duration getDuracionPrevista(){
-        return duracionPrevista;
-    }
 }
