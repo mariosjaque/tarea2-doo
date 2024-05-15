@@ -5,6 +5,10 @@ public class Departamento implements Invitable{
     private String nombre;
 
     private ArrayList<Empleado> Lista;
+    public Departamento(String NOMBRE){
+        Lista = new ArrayList<>();
+        nombre = NOMBRE;
+    }
     public int obtenerCantidadEmpleados(List Empleados){
         return Empleados.size();
     }
@@ -12,8 +16,12 @@ public class Departamento implements Invitable{
         Lista.add(e);
     }
     @Override
-    public void invitar(Empleado e){
-        System.out.println("Se invito al empleado"+e.getNombre()+e.getApellidos());
+    public void invitar(){
+        for(int i=0;i<Lista.size();i++)
+            System.out.println("Se invito al empleado: "+Lista.get(i).getNombre()+" "+Lista.get(i).getApellidos());
+    }
+    public String getNombre(){
+        return nombre;
     }
 
 }
