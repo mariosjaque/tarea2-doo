@@ -10,8 +10,8 @@ public class Reunion {
     private Instant horaPrevista;
     private Duration duracionPrevista;
 
-    private  Instant horaInicio;
-    private  Instant horaFin;
+    private Instant horaInicio;
+    private Instant horaFin;
 
     public Reunion(){
 
@@ -50,11 +50,11 @@ public class Reunion {
     public void iniciar(){
         horaInicio = Instant.now();
         fecha = new Date();
-        System.out.println("La reunio empezo a las "+horaInicio);
+        System.out.println("La reunion empezo a las "+horaInicio);
     }
     public void finalizar(){
         horaFin = Instant.now();
-        System.out.println("La reunio finalizo a las "+horaFin);
+        System.out.println("La reunion finalizo a las "+horaFin);
     }
     public Duration getDuracionPrevista(){
         return duracionPrevista;
