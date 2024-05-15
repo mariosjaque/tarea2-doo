@@ -1,22 +1,32 @@
 package doo.tarea2;
 import java.time.*;
+import java.util.Date;
 import java.util.List;
 
 public class Reunion {
 
-    private int fecha;
+    private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
     private  Instant horaInicio;
     private  Instant horaFin;
 
-    /*public List Asistencia(){}
-    public List obtenerAusencias(){}
+    public List Asistencia(Asistencia asistencia){
+        return asistencia.getLista();
+    }
+    public List obtenerAusencias(Ausente ausente){
+        return ausente.getLista();
+    }
 
-    public List obetenerRetrasos(){}
-    public int obtenerTotalAsistencias(){}
+    public List obetenerRetrasos(Retraso retraso){
+        return retraso.getLista();
+    }
+    public int obtenerTotalAsistencias(Asistencia asistencia){
+        return asistencia.getLista().size();
+    }
 
-    public int obtenerPorcentajeAsistencia(){}*/
+    /*public int obtenerPorcentajeAsistencia(){
+    }*/
     public float calcularTiempoReal(Instant a, Instant b){
         return b.getEpochSecond()-a.getEpochSecond();
     }
