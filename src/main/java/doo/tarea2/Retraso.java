@@ -1,11 +1,9 @@
 package doo.tarea2;
 
-public class Retraso {
-    private Empleado empleado;
-    private Hora horaLlegada;
+import java.time.Instant;
 
-        public Retraso(Empleado empleado, Hora horaLlegada) {
-        this.empleado = empleado;
-        this.horaLlegada = horaLlegada;
-    }
+public class Retraso extends Asistencia{
+    private Instant hora;
+    public Retraso(){}
+
 }
