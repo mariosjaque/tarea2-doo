@@ -58,8 +58,8 @@ public class Departamento implements Invitable{
     public String getNombre(){
         return nombre;
     }
-    public void tostring(){
-        System.out.println("Crea una empesa, inicializando su nombre");
+    public String toString(){
+        return "Crea una empesa, inicializando su nombre";
     }
 
 }

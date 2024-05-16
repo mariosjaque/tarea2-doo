@@ -58,8 +58,8 @@ public class Empleado implements Invitable{
     public void invitar(){
 
     }
-    public void tostring(){
-        System.out.println("Crea un empleado, inicializando sus propiedades");
+    public String toString(){
+        return "Crea un empleado, inicializando sus propiedades";
     }
 
 }

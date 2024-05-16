@@ -225,7 +225,7 @@ public abstract class Reunion {
             System.err.println("Error al exportar el informe: " + e.getMessage());
         }
     }
-    public void tostring(){
-        System.out.println("Crea la reunion, tanto virtual como presencial, dependendiendo de lo que se pida y tambien poder guardar a que hora sera la reunion,la duracion prevista y quien sera el organizador");
+    public String toString(){
+        return "Crea la reunion, tanto virtual como presencial, dependendiendo de lo que se pida y tambien poder guardar a que hora sera la reunion,la duracion prevista y quien sera el organizador";
     }
 }
