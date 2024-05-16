@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
+import static java.time.temporal.ChronoUnit.HOURS;
+import static java.time.temporal.ChronoUnit.MINUTES;
+
 /** Clase Reunion
  * @author Luis Martinez
  * @author Santiago Diaz
@@ -21,29 +24,25 @@ public abstract class Reunion {
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
-
     private Instant horaInicio;
     private Instant horaFin;
     private Empleado Organizador;
 
     /**
      *
-     * Genera una invitacion tomando los datos y hora de la reunion a suceder
+     * Genera una reunion
+     * @param org Empleado que organiza la reunion
+     * @param fechaR la fecha de la reunion a organizar
+     * @param
+     * @param duraPrev Duracion en minutos prevista para la reunion
 -     */
-    public Reunion(){
-
-        long n;
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("¿En cuantas horas tiene previsto empezar su reunion?");
-        n = entrada.nextLong();
-        n = n*60*60;
-        horaPrevista = Instant.now();
-        horaPrevista = horaPrevista.plusSeconds(n);
-        System.out.println("Muy bien, la hora prevista de inicio sera a las: "+horaPrevista);
-        System.out.println("Cuanto sera la duracion prevista de la reunion en minutos?");
-        n = entrada.nextLong();
-        duracionPrevista = Duration.ofMinutes(n);
-        System.out.println("Muy bien, la duracion prevista sera de: "+duracionPrevista.getSeconds()/60+" minutos");
+    public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev){
+        fecha = fechaR;
+        horaPrevista = fecha.toInstant();
+        horaPrevista = horaPrevista.plus(horaPrevistaHH, HOURS);
+        horaPrevista = horaPrevista.plus(horaPrevistaMM, MINUTES);
+        Organizador = org;
+        duracionPrevista = Duration.ofMinutes(duraPrev);
     }
 
     /**

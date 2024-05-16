@@ -1,5 +1,7 @@
 package doo.tarea2;
 
+import java.util.Date;
+
 /**
  * Clase ReunionVirtual
  * Se crea con un super desde reunion original.
@@ -12,8 +14,8 @@ public class ReunionVirtual extends Reunion {
      */
     private String enlace;
 
-    public ReunionVirtual() {
-        super();
+    public ReunionVirtual(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev) {
+        super(org, fechaR, horaPrevistaHH, horaPrevistaMM, duraPrev);
     }
 
     /**
