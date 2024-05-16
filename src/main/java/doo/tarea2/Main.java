@@ -26,6 +26,8 @@ public class Main {
             Entrada.reset();
             if (Objects.equals(Frase, "Linea")) {
                 ReunionVirtual reunion = new ReunionVirtual();
+                System.out.println("Escriba a continuacion el tipo de su reunion: ");
+                tipoReunion = Entrada.nextLine();
                 System.out.println("Escriba a continuacion el link de su reunion: ");
                 Frase = Entrada.nextLine();
                 reunion.setEnlace(Frase);
@@ -34,7 +36,9 @@ public class Main {
                 break;
             } else if (Objects.equals(Frase, "Presencial")) {
                 ReunionPresencial reunion = new ReunionPresencial();
-                System.out.println("Escriba a continuacion el link de su reunion: ");
+                System.out.println("Escriba a continuacion el tipo de su reunion: ");
+                tipoReunion = Entrada.nextLine();
+                System.out.println("Escriba a continuacion la sala de su reunion: ");
                 reunion.modSala(Frase);
                 System.out.println("Muy bien su sala entonces sera: " + Frase);
                 reunionV = reunion;
