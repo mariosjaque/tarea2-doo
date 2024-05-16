@@ -4,7 +4,6 @@ import java.util.Date;
 
 /**
  * Clase ReunionPresencial
- *
  * Se extiende de reunion y permite crear una reunion presencial y modificar sus datos.
  * @author Santiago Diaz
  * @author Luis Martinez
@@ -36,6 +35,10 @@ public class ReunionPresencial extends Reunion {
         this.sala = sala;
     }
 
+    /**
+     * Genera el informe de la reunion agregando la informacion de reunion presencial y sala
+     * @return el informe terminado en formato StringBuilder para ser usado por generarInforme()
+     */
     @Override
     public StringBuilder generarInforme(){
         StringBuilder informe = super.generarInforme();

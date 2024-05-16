@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 import static java.time.temporal.ChronoUnit.HOURS;
 import static java.time.temporal.ChronoUnit.MINUTES;
@@ -27,6 +28,9 @@ public abstract class Reunion {
     private Instant horaFin;
     private Empleado Organizador;
     private List<Invitacion> Invitados;
+    private List<Nota> Notas;
+    private List<Asistencia> Asistentes;
+    DateTimeFormatter fechaHora = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     /**
      *
@@ -51,35 +55,45 @@ public abstract class Reunion {
      *
      * @return Devuelve la lista de asistencia.
      */
-    public List obtenerAsistencias(Asistencia asistencia){
-        return asistencia.getLista();
+    public List obtenerAsistencias(){
+        List<Empleado> empAsistente = null;
+        for(int i=0;i<Asistentes.size();i++){
+            Asistencia asistente = Asistentes.get(i);
+            empAsistente.add(asistente.getEmpleado());
+        }
+        return empAsistente;
     }
 
     public float obtenerPorcentajeAsistencia(){
-
         return 0;
     }
 
     /**
      *
-     * @param ausente Devuelve las ausencias de los empleados
-     * @return
+     * @return Devuelve lista de ausentes
      */
-    public List obtenerAusencias(Ausente ausente){
-        return ausente.getLista();
+    public List obtenerAusencias(){
+        List<Empleado> ausente = null;
+        return ausente;
     }
 
     /**
      * obtenerRetrasos
-     * @param retraso devuelve los retrasos del empleado
-     * @return Devuelve
+     * @return Devuelve lista con empleados que hayan llegado despues del inicio
      */
 
-    public List obtenerRetrasos(Retraso retraso){
-        return retraso.getLista();
+    public List obtenerRetrasos(){
+        List<Empleado> retrasos = null;
+        for(int i=0;i<Asistentes.size();i++){
+            Asistencia asistente = Asistentes.get(i);
+            if(asistente instanceof Retraso){
+                retrasos.add(asistente.getEmpleado());
+            }
+        }
+        return retrasos;
     }
-    public int obtenerTotalAsistencia(Asistencia asistencia){
-        return asistencia.getLista().size();
+    public int obtenerTotalAsistencia(){
+        return Asistentes.size();
     }
 
     public float calcularTiempoReal(){
@@ -93,10 +107,18 @@ public abstract class Reunion {
      */
     public void iniciar(){
         horaInicio = Instant.now();
+        Scanner Entrada = new Scanner(System.in);
         for(int i=0;i<Invitados.size();i++){
-
+            Empleado e = Invitados.get(i).getEmpleado;
+            System.out.println("¿Está presente el empleado "+e.getNombre()+" "+e.getApellidos()+"? (Si/No)");
+            String Frase = Entrada.nextLine();
+            while(Frase!="Si" && Frase!="No")
+                if(Frase=="Si") {
+                    Asistencia asistente = new Asistencia(e);
+                    Asistentes.add(asistente);
+                }
         }
-        System.out.println("La reunion empezo a las "+horaInicio);
+        System.out.println("La reunion empezo a las "+fechaHora.format(horaInicio));
     }
 
     /**
@@ -105,13 +127,12 @@ public abstract class Reunion {
      */
     public void finalizar(){
         horaFin = Instant.now();
-        System.out.println("La reunion finalizo a las "+horaFin);
+        System.out.println("La reunion finalizo a las "+fechaHora.format(horaFin));
     }
 
     /**
      * getDuracionPrevista()
      * es un metodo que permite comparar la duracion estimada vs la original.
-     *
      * @return cuanto debiera haber durado la reunion
      */
     public Duration getDuracionPrevista(){
@@ -119,12 +140,11 @@ public abstract class Reunion {
     }
 
     /**
-     * Genera un informe en texto con detalles de la reunión.
-     * @return El informe en formato de texto.
+     * Genera un informe en texto con detalles de la reunion
+     * @return el informe en formato StringBuilder, listo para que se agregue mas informacion
      */
     public StringBuilder generarInforme() {
         StringBuilder informe = new StringBuilder();
-        DateTimeFormatter fechaHora = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
         // Fecha y hora de la reunión
         informe.append("Fecha y hora de la reunión: ").append(fechaHora.format(horaPrevista)).append("\n");
@@ -135,10 +155,14 @@ public abstract class Reunion {
         informe.append("Duración total: ").append(this.calcularTiempoReal()).append(" minutos\n");
 
         informe.append("Organizador: ").append(Organizador.getNombre()).append("\n");
-        informe.append("Lista de participantes que llegaron a tiempo:\n");
+        informe.append("Lista de participantes:\n");
         List<Empleado> participantes = obtenerAsistencias();
         for (Empleado participante : participantes) {
-            informe.append("- ").append(participante.getNombre()).append("\n");
+            informe.append("- ").append(participante.getNombre()).append("").append(participante.getApellidos()).append("\n");
+        }
+        informe.append("Notas:\n");
+        for (Nota notaInforme : Notas) {
+            informe.append("- ").append(notaInforme.getContenido()).append("\n");
         }
 
         return informe;
@@ -146,12 +170,11 @@ public abstract class Reunion {
 
     /**
      * Exporta el informe a un archivo de texto.
-     * @param informe El informe a exportar.
-     * @param rutaArchivo La ruta del archivo de texto donde se exportará el informe.
+     * @param rutaArchivo La ruta del archivo de texto donde se exportara el informe
      */
-    public void exportarInforme(StringBuilder informe, String rutaArchivo) {
+    public void exportarInforme(String rutaArchivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
-            writer.write(informe.toString());
+            writer.write(this.generarInforme().toString());
             System.out.println("Informe exportado correctamente a " + rutaArchivo);
         } catch (IOException e) {
             System.err.println("Error al exportar el informe: " + e.getMessage());

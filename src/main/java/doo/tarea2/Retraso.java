@@ -11,10 +11,16 @@ import java.time.Instant;
  */
 public class Retraso extends Asistencia{
     private Instant hora;
-
     /**
      * Constructor vacio
      */
-    public Retraso(){}
+    public Retraso(Empleado e){
+        super(e);
+        hora = Instant.now();
+    }
+
+    public Instant getHora(){
+        return hora;
+    }
 
 }

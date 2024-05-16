@@ -32,11 +32,14 @@ public class ReunionVirtual extends Reunion {
      * Modifica el contenido del enlace de la reunion en cuestion.
      * @param enlace es el nuevo enlace
      */
-
     public void setEnlace(String enlace) {
         this.enlace = enlace;
     }
 
+    /**
+     * Genera el informe de la reunion agregando la informacion de reunion virtual y enlace
+     * @return el informe terminado en formato StringBuilder para ser usado por generarInforme()
+     */
     @Override
     public StringBuilder generarInforme(){
         StringBuilder informe = super.generarInforme();

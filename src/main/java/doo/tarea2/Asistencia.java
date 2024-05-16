@@ -11,20 +11,13 @@ import java.util.ArrayList;
  */
 public class Asistencia {
 
-    /**
-     * Este es el constructor de la lista.
-     */
-    private ArrayList<Empleado> Lista;
+    private Empleado emp;
 
-    public void estaPresente(Empleado e){
-        Lista.add(e);
+    public Asistencia(Empleado e){
+        emp = e;
     }
 
-    /**
-     * getLista()
-     * @return Lista permite que el comando getLista() retorne la lista de cada reunión.
-     */
-    public ArrayList<Empleado> getLista(){
-        return Lista;
+    public Empleado getEmpleado(){
+        return emp;
     }
 }
