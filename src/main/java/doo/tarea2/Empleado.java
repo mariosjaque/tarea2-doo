@@ -71,7 +71,9 @@ public class Empleado implements Invitable{
     /**
      * Genera invitacion para el empleado
      * @param Invitados lista de invitados a modificar
-     * @param hora hora de compromiso
+     * @param fecha fecha en formato yyyy-MM-dd
+     * @param horaHH hora de compromiso, campo Hora
+     * @param horaMM hora de compromiso, campo Minutos
      */
     @Override
     public void invitar(List<Invitacion> Invitados, String fecha, int horaHH, int horaMM){
@@ -85,7 +87,6 @@ public class Empleado implements Invitable{
         Instant hora = fechaR.toInstant();
         hora = hora.plus(horaHH, HOURS);
         hora = hora.plus(horaMM, MINUTES);
-        hora = hora.minus(ZonedDateTime.now().getOffset().getTotalSeconds(), SECONDS);
         Invitacion nuevaInvitacion = new Invitacion(this,hora);
         Invitados.add(nuevaInvitacion);
     }

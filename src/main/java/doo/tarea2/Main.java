@@ -45,6 +45,7 @@ public class Main {
         reunion.finalizar();
         System.out.println(reunion.obtenerTotalAsistencia());
         System.out.println(reunion.obtenerPorcentajeAsistencia());
+        reunion.exportarInforme("C:/users/mario/informe.txt");
     }
 
 }

@@ -36,7 +36,9 @@ public abstract class Reunion {
     private List<Invitacion> Invitados;
     private List<Nota> Notas = new ArrayList<>();
     private List<Asistencia> Asistentes = new ArrayList<>();
-    DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneOffset.UTC);;
+    DateTimeFormatter formatoFechaHora = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").withZone(ZoneId.systemDefault());;
+    DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());;
+
 
     /**
      * Genera una reunion
@@ -57,7 +59,6 @@ public abstract class Reunion {
         horaPrevista = fecha.toInstant();
         horaPrevista = horaPrevista.plus(horaPrevistaHH, HOURS);
         horaPrevista = horaPrevista.plus(horaPrevistaMM, MINUTES);
-        horaPrevista = horaPrevista.minus(ZonedDateTime.now().getOffset().getTotalSeconds(), SECONDS);
         Organizador = org;
         duracionPrevista = Duration.ofMinutes(duraPrev);
         this.tipo = tipoReunion.values()[tipo];
@@ -207,25 +208,25 @@ public abstract class Reunion {
         StringBuilder informe = new StringBuilder();
 
         // Fecha y hora de la reunión
-        informe.append("Fecha y hora de la reunión: ").append(formatoHora.format(horaPrevista)).append("\n");
+        informe.append("Fecha y hora de la reunión: ").append(formatoFechaHora.format(horaPrevista)).append("\n");
 
         // Horas de inicio y fin, y duración total
         informe.append("Hora de inicio: ").append(formatoHora.format(horaInicio)).append("\n");
         informe.append("Hora de fin: ").append(formatoHora.format(horaFin)).append("\n");
         informe.append("Duración total: ").append(this.calcularTiempoReal()).append(" minutos\n");
 
-        informe.append("Organizador: ").append(Organizador.getNombre()).append("\n");
+        informe.append("Organizador: ").append(Organizador.getNombre()).append(" ").append(Organizador.getApellidos()).append("\n");
         informe.append("Lista de participantes:\n");
         List<Empleado> participantes = obtenerAsistencias();
         for (Empleado participante : participantes) {
-            informe.append("- ").append(participante.getNombre()).append("").append(participante.getApellidos()).append("\n");
+            informe.append("- ").append(participante.getNombre()).append(" ").append(participante.getApellidos()).append("\n");
         }
-        informe.append("Notas:\n");
+        informe.append("Notas: \n");
         for (Nota notaInforme : Notas) {
             informe.append("- ").append(notaInforme.getContenido()).append("\n");
         }
 
-        informe.append("Tipo de reunión:").append(tipo.getDescripcion());
+        informe.append("Tipo de reunión: ").append(tipo.getDescripcion()).append("\n");
 
         return informe;
     }

@@ -54,8 +54,9 @@ public class Departamento implements Invitable{
     /**
      * Genera invitaciones para todos los empleados que pertenecen al departamento.
      * Usa como parametro para el bucle for el tamaño de la lista de empleados.
-     * @param Invitados lista de invitados a modificar
-     * @param hora hora de compromiso
+     * @param fecha fecha en formato yyyy-MM-dd
+     * @param horaHH hora de compromiso, campo Hora
+     * @param horaMM hora de compromiso, campo Minutos
      */
     @Override
     public void invitar(List<Invitacion> Invitados, String fecha, int horaHH, int horaMM){
@@ -69,7 +70,6 @@ public class Departamento implements Invitable{
         Instant hora = fechaR.toInstant();
         hora = hora.plus(horaHH, HOURS);
         hora = hora.plus(horaMM, MINUTES);
-        hora = hora.minus(ZonedDateTime.now().getOffset().getTotalSeconds(), SECONDS);
         for(int i=0;i<Lista.size();i++){
             Invitacion nuevaInvitacion = new Invitacion(Lista.get(i),hora);
             Invitados.add(i,nuevaInvitacion);
