@@ -43,14 +43,14 @@ public abstract class Reunion {
      * @param duraPrev Duracion en minutos prevista para la reunion
      * @param tipo Describe el tipo de la reunion
 -     */
-    public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, tipoReunion tipo){
+    public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo){
         fecha = fechaR;
         horaPrevista = fecha.toInstant();
         horaPrevista = horaPrevista.plus(horaPrevistaHH, HOURS);
         horaPrevista = horaPrevista.plus(horaPrevistaMM, MINUTES);
         Organizador = org;
         duracionPrevista = Duration.ofMinutes(duraPrev);
-        this.tipo = tipo;
+        this.tipo = tipoReunion.values()[tipo];
     }
 
     /**
@@ -207,6 +207,8 @@ public abstract class Reunion {
         for (Nota notaInforme : Notas) {
             informe.append("- ").append(notaInforme.getContenido()).append("\n");
         }
+
+        informe.append("Tipo de reunión:").append(tipo.getDescripcion());
 
         return informe;
     }

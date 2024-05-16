@@ -14,7 +14,7 @@ public class ReunionPresencial extends Reunion {
      * sala es privado para que solo sea visible cuando el programa lo estime necesario.
      */
     private String sala;
-    public ReunionPresencial(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, tipoReunion tipo) {
+    public ReunionPresencial(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo) {
         super(org, fechaR, horaPrevistaHH, horaPrevistaMM, duraPrev, tipo);
     }
 
