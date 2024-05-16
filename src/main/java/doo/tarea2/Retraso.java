@@ -26,5 +26,8 @@ public class Retraso extends Asistencia{
     public Instant getHora(){
         return hora;
     }
-
+    @Override
+    public void tostring(){
+        System.out.println("Permite ver a que hora fue que llego la persona, despues de haber empezado la reunion");
+    }
 }

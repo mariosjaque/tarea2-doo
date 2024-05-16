@@ -10,4 +10,7 @@ import java.time.Instant;
 public class Invitacion {
     private Instant hora;
     public Invitacion(){}
+    public void tostring(){
+        System.out.println("Genera las invitaciones");
+    }
 }

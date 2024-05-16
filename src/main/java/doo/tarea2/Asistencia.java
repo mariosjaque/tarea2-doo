@@ -20,4 +20,7 @@ public class Asistencia {
     public Empleado getEmpleado(){
         return emp;
     }
+    public void tostring(){
+        System.out.println("Crea una lista, donde se guardaran la gente que asista");
+    }
 }

@@ -25,4 +25,7 @@ public enum tipoReunion {
     public String getDescripcion() {
         return descripcion;
     }
+    public void tostring(){
+        System.out.println("Permite asignar de que tratara la reunion");
+    }
 }

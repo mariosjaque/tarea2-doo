@@ -31,4 +31,7 @@ public class Nota {
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
+    public void tostring(){
+        System.out.println("Permite crear notas sobre la reunion");
+    }
 }
