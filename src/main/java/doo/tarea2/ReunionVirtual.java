@@ -36,4 +36,11 @@ public class ReunionVirtual extends Reunion {
     public void setEnlace(String enlace) {
         this.enlace = enlace;
     }
+
+    @Override
+    public StringBuilder generarInforme(){
+        StringBuilder informe = super.generarInforme();
+        informe.append("La reunión fue virtual.\n").append("Enlace: ").append(enlace);
+        return informe;
+    }
 }

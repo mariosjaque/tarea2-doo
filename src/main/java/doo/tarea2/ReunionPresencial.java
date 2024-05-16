@@ -35,4 +35,11 @@ public class ReunionPresencial extends Reunion {
     public void modSala(String sala) {
         this.sala = sala;
     }
+
+    @Override
+    public StringBuilder generarInforme(){
+        StringBuilder informe = super.generarInforme();
+        informe.append("La reunión fue presencial.\n").append("Sala: ").append(sala);
+        return informe;
+    }
 }

@@ -118,5 +118,43 @@ public abstract class Reunion {
         return duracionPrevista;
     }
 
+    /**
+     * Genera un informe en texto con detalles de la reunión.
+     * @return El informe en formato de texto.
+     */
+    public StringBuilder generarInforme() {
+        StringBuilder informe = new StringBuilder();
+        DateTimeFormatter fechaHora = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
+        // Fecha y hora de la reunión
+        informe.append("Fecha y hora de la reunión: ").append(fechaHora.format(horaPrevista)).append("\n");
+
+        // Horas de inicio y fin, y duración total
+        informe.append("Hora de inicio: ").append(fechaHora.format(horaInicio)).append("\n");
+        informe.append("Hora de fin: ").append(fechaHora.format(horaFin)).append("\n");
+        informe.append("Duración total: ").append(this.calcularTiempoReal()).append(" minutos\n");
+
+        informe.append("Organizador: ").append(Organizador.getNombre()).append("\n");
+        informe.append("Lista de participantes que llegaron a tiempo:\n");
+        List<Empleado> participantes = obtenerAsistencias();
+        for (Empleado participante : participantes) {
+            informe.append("- ").append(participante.getNombre()).append("\n");
+        }
+
+        return informe;
+    }
+
+    /**
+     * Exporta el informe a un archivo de texto.
+     * @param informe El informe a exportar.
+     * @param rutaArchivo La ruta del archivo de texto donde se exportará el informe.
+     */
+    public void exportarInforme(StringBuilder informe, String rutaArchivo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
+            writer.write(informe.toString());
+            System.out.println("Informe exportado correctamente a " + rutaArchivo);
+        } catch (IOException e) {
+            System.err.println("Error al exportar el informe: " + e.getMessage());
+        }
+    }
 }
