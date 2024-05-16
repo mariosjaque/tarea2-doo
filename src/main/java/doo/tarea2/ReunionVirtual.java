@@ -8,7 +8,7 @@ package doo.tarea2;
  */
 public class ReunionVirtual extends Reunion {
     /**
-     * enlace es privado para que solo sea visible cuando el programa y .
+     * enlace es privado para que solo sea visible cuando el programa lo estime necesario.
      */
     private String enlace;
 
@@ -17,7 +17,8 @@ public class ReunionVirtual extends Reunion {
     }
 
     /**
-     * getEnlace Permite obtener el contenido del enlace de reunion.
+     * getEnlace()
+     * Permite obtener el contenido del enlace de reunion.
      * @return String con el enlace
      */
     public String getEnlace() {
@@ -25,8 +26,9 @@ public class ReunionVirtual extends Reunion {
     }
 
     /**
-     * setEnlace Modifica el contenido del enlace de la reunion en cuestion.
-     * @param enlace es modificable
+     * setEnlace()
+     * Modifica el contenido del enlace de la reunion en cuestion.
+     * @param enlace es el nuevo enlace
      */
 
     public void setEnlace(String enlace) {

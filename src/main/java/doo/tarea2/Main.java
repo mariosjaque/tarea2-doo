@@ -7,7 +7,9 @@ import java.util.Scanner;
  * Clase Main
  *
  * Contiene los test de todo el programa.
- * @author Luis Martinez, Mario Salgado y Santiago Diaz
+ * @author Luis Martinez
+ * @author Mario Salgado
+ * @author Santiago Diaz
  * @version 1.0
  *
  */

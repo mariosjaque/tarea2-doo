@@ -3,10 +3,15 @@ import java.time.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 /** Clase Reunion
  * @author Luis Martinez
  * @author Santiago Diaz
+ * @author Mario Salgado
 */
 public abstract class Reunion {
     /**
@@ -19,6 +24,7 @@ public abstract class Reunion {
 
     private Instant horaInicio;
     private Instant horaFin;
+    private Empleado Organizador;
 
     /**
      *
@@ -42,10 +48,10 @@ public abstract class Reunion {
 
     /**
      *
-     * @param asistencia
-     * @return Devuelve al empleado como presente.
+     *
+     * @return Devuelve la lista de asistencia.
      */
-    public List Asistencia(Asistencia asistencia){
+    public List obtenerAsistencias(Asistencia asistencia){
         return asistencia.getLista();
     }
 
@@ -60,14 +66,14 @@ public abstract class Reunion {
 
     /**
      * obtenerRetrasos
-     * @param retraso devuelve los retrazos del empleado
+     * @param retraso devuelve los retrasos del empleado
      * @return Devuelve
      */
 
     public List obtenerRetrasos(Retraso retraso){
         return retraso.getLista();
     }
-    public int obtenerTotalAsistencias(Asistencia asistencia){
+    public int obtenerTotalAsistencia(Asistencia asistencia){
         return asistencia.getLista().size();
     }
 
@@ -77,8 +83,7 @@ public abstract class Reunion {
 
     /**
      * iniciar
-     *
-     * @return la hora a la que comenzo la reunion
+     * Define la hora de inicio real de la reunion e imprime un mensaje correspondiente
      */
     public void iniciar(){
         horaInicio = Instant.now();
@@ -88,8 +93,7 @@ public abstract class Reunion {
 
     /**
      * finalizar
-     *
-     * @return la hora en la que finalizo la reunion
+     * Finaliza la reunion e imprime un mensaje al respecto.
      */
     public void finalizar(){
         horaFin = Instant.now();
@@ -97,7 +101,7 @@ public abstract class Reunion {
     }
 
     /**
-     *
+     * getDuracionPrevista()
      * es un metodo que permite comparar la duracion estimada vs la original.
      *
      * @return cuanto debiera haber durado la reunion
@@ -105,4 +109,6 @@ public abstract class Reunion {
     public Duration getDuracionPrevista(){
         return duracionPrevista;
     }
+
+
 }

@@ -6,15 +6,17 @@ import java.util.ArrayList;
  * Clase Asistencia
  *
  * Genera la lista de invitados que asistieron a la reunión.
- *
+ * @author Luis Martinez
  */
 public class Asistencia {
 
+    /**
+     * Este es el constructor de la lista.
+     */
     private ArrayList<String> Lista;
-    //Constructor
 
     /**
-     * Este es el constructor de la lista, solo recibe los datos y los pasa a un string.
+     * getLista()
      * @return Lista permite que el comando getLista() retorne la lista de cada reunión.
      */
     public ArrayList<String> getLista(){
