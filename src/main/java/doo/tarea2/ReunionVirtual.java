@@ -15,8 +15,8 @@ public class ReunionVirtual extends Reunion {
      */
     private String enlace;
 
-    public ReunionVirtual(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev) {
-        super(org, fechaR, horaPrevistaHH, horaPrevistaMM, duraPrev);
+    public ReunionVirtual(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, tipoReunion tipo) {
+        super(org, fechaR, horaPrevistaHH, horaPrevistaMM, duraPrev, tipo);
     }
 
     /**
