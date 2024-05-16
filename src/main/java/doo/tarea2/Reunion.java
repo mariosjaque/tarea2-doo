@@ -1,5 +1,9 @@
 package doo.tarea2;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.io.BufferedWriter;
@@ -7,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.Instant;
+import java.util.Locale;
 
 import static java.time.temporal.ChronoUnit.*;
 import static jdk.nashorn.internal.objects.NativeMath.max;
@@ -24,14 +29,14 @@ public abstract class Reunion {
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
-    private Instant horaInicio;
+    private Instant horaInicio = Instant.ofEpochSecond(0);
     private Instant horaFin;
     private Empleado Organizador;
     private tipoReunion tipo;
     private List<Invitacion> Invitados;
-    private List<Nota> Notas;
-    private List<Asistencia> Asistentes;
-    DateTimeFormatter fechaHora = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    private List<Nota> Notas = new ArrayList<>();
+    private List<Asistencia> Asistentes = new ArrayList<>();
+    DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneOffset.UTC);;
 
     /**
      * Genera una reunion
@@ -42,8 +47,13 @@ public abstract class Reunion {
      * @param duraPrev Duracion en minutos prevista para la reunion
      * @param tipo Describe el tipo de la reunion
 -     */
-    public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo, List<Invitacion> ListaInv){
-        fecha = fechaR;
+    public Reunion(Empleado org, String fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo, List<Invitacion> ListaInv){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        try {
+            fecha = format.parse(fechaR);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         horaPrevista = fecha.toInstant();
         horaPrevista = horaPrevista.plus(horaPrevistaHH, HOURS);
         horaPrevista = horaPrevista.plus(horaPrevistaMM, MINUTES);
@@ -58,7 +68,7 @@ public abstract class Reunion {
      * @return Devuelve la lista de asistencia.
      */
     public List obtenerAsistencias(){
-        List<Empleado> empAsistente = null;
+        List<Empleado> empAsistente = new ArrayList<>();
         for(int i=0;i<Asistentes.size();i++){
             Asistencia asistente = Asistentes.get(i);
             empAsistente.add(asistente.getEmpleado());
@@ -79,12 +89,12 @@ public abstract class Reunion {
      * @return Devuelve lista de ausentes
      */
     public List obtenerAusencias(){
-        List<Empleado> ausente = null;
+        List<Empleado> ausente = new ArrayList<>();
         for(int i=0;i<Invitados.size();i++){
             boolean asistio=false;
             Empleado invitado = Invitados.get(i).getEmpleado();
             for(int j=0;j<Asistentes.size();j++){
-                Empleado asistente = Asistentes.get(i).getEmpleado();
+                Empleado asistente = Asistentes.get(j).getEmpleado();
                 if(invitado==asistente){
                     asistio=true;
                 }
@@ -100,7 +110,7 @@ public abstract class Reunion {
      * @return Devuelve lista con empleados que hayan llegado despues del inicio
      */
     public List obtenerRetrasos(){
-        List<Empleado> retrasos = null;
+        List<Empleado> retrasos = new ArrayList<>();
         for(int i=0;i<Asistentes.size();i++){
             Asistencia asistente = Asistentes.get(i);
             if(asistente instanceof Retraso){
@@ -149,7 +159,7 @@ public abstract class Reunion {
      */
     public void iniciar(){
         horaInicio = Instant.now();
-        System.out.println("La reunion empezo a las "+fechaHora.format(horaInicio));
+        System.out.println("La reunion empezo a las "+formatoHora.format(horaInicio));
     }
 
     /**
@@ -157,7 +167,7 @@ public abstract class Reunion {
      */
     public void finalizar(){
         horaFin = Instant.now();
-        System.out.println("La reunion finalizo a las "+fechaHora.format(horaFin));
+        System.out.println("La reunion finalizo a las "+formatoHora.format(horaFin));
     }
 
     /**
@@ -197,11 +207,11 @@ public abstract class Reunion {
         StringBuilder informe = new StringBuilder();
 
         // Fecha y hora de la reunión
-        informe.append("Fecha y hora de la reunión: ").append(fechaHora.format(horaPrevista)).append("\n");
+        informe.append("Fecha y hora de la reunión: ").append(formatoHora.format(horaPrevista)).append("\n");
 
         // Horas de inicio y fin, y duración total
-        informe.append("Hora de inicio: ").append(fechaHora.format(horaInicio)).append("\n");
-        informe.append("Hora de fin: ").append(fechaHora.format(horaFin)).append("\n");
+        informe.append("Hora de inicio: ").append(formatoHora.format(horaInicio)).append("\n");
+        informe.append("Hora de fin: ").append(formatoHora.format(horaFin)).append("\n");
         informe.append("Duración total: ").append(this.calcularTiempoReal()).append(" minutos\n");
 
         informe.append("Organizador: ").append(Organizador.getNombre()).append("\n");

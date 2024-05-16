@@ -1,7 +1,15 @@
 package doo.tarea2;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import static java.time.temporal.ChronoUnit.*;
 
 /**
  * Clase Departamento
@@ -50,10 +58,21 @@ public class Departamento implements Invitable{
      * @param hora hora de compromiso
      */
     @Override
-    public void invitar(List<Invitacion> Invitados, Instant hora){
+    public void invitar(List<Invitacion> Invitados, String fecha, int horaHH, int horaMM){
+        Date fechaR;
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        try {
+            fechaR = format.parse(fecha);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        Instant hora = fechaR.toInstant();
+        hora = hora.plus(horaHH, HOURS);
+        hora = hora.plus(horaMM, MINUTES);
+        hora = hora.minus(ZonedDateTime.now().getOffset().getTotalSeconds(), SECONDS);
         for(int i=0;i<Lista.size();i++){
             Invitacion nuevaInvitacion = new Invitacion(Lista.get(i),hora);
-            Invitados.add(nuevaInvitacion);
+            Invitados.add(i,nuevaInvitacion);
         }
     }
 

@@ -12,5 +12,5 @@ import java.util.List;
  * @author Mario Salgado
  */
 public interface Invitable {
-    void invitar(List<Invitacion> Invitados, Instant hora);
+    void invitar(List<Invitacion> Invitados, String fecha, int horaHH, int horaMM);
 }
