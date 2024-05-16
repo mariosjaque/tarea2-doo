@@ -27,12 +27,10 @@ public class Main {
         Ingenieria.AñadirEmpleado(Mario);
 
         ArrayList<Invitacion> invitados = new ArrayList<>();
-        ReunionVirtual reunion = new ReunionVirtual(Admin, " 2024-05-16 ", 17, 50, 2, 0,invitados);
+        ReunionVirtual reunion = new ReunionVirtual(Admin, "2024-05-16", 17, 50, 2, 0,invitados);
         reunion.setEnlace("https://testing.com");
-
         Ingenieria.invitar(invitados, "2024-05-16", 17, 50);
         reunion.entraReunion("1");
-        reunion.entraReunion("2");
 
         reunion.iniciar();
         /*try {
@@ -42,9 +40,12 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e);
         }*/
+        reunion.entraReunion("2");
         reunion.entraReunion("3");
         reunion.finalizar();
         System.out.println(reunion.obtenerRetrasos().size());
+        Retraso ret = (Retraso) reunion.obtenerRetrasos().get(0);
+        System.out.println(ret.getHora());
         System.out.println(reunion.obtenerTotalAsistencia());
         System.out.println(reunion.obtenerPorcentajeAsistencia());
         reunion.exportarInforme("C:/users/mario/informe.txt");

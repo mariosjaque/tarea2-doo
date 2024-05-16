@@ -28,7 +28,7 @@ public abstract class Reunion {
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
-    private Instant horaInicio = Instant.ofEpochSecond(0);
+    private Instant horaInicio;
     private Instant horaFin;
     private Empleado Organizador;
     private tipoReunion tipo;
@@ -110,11 +110,11 @@ public abstract class Reunion {
      * @return Devuelve lista con empleados que hayan llegado despues del inicio
      */
     public List obtenerRetrasos(){
-        List<Empleado> retrasos = new ArrayList<>();
+        List<Retraso> retrasos = new ArrayList<Retraso>();
         for(int i=0;i<Asistentes.size();i++){
             Asistencia asistente = Asistentes.get(i);
             if(asistente instanceof Retraso){
-                retrasos.add(asistente.getEmpleado());
+                retrasos.add((Retraso) Asistentes.get(i));
             }
         }
         return retrasos;
@@ -179,12 +179,12 @@ public abstract class Reunion {
             Empleado invitado = Invitados.get(i).getEmpleado();
             if(invitado.getID()==IDEmpleado){
                 Asistencia asis;
-                long horaCompromiso = horaInicio.getEpochSecond();
-                if(Invitados.get(i).getHora().getEpochSecond()>horaCompromiso){
-                    horaCompromiso = Invitados.get(i).getHora().getEpochSecond();
-                }
-                if(Instant.now().getEpochSecond()>horaCompromiso){
-                    asis = new Retraso(invitado);
+                if(horaInicio!=null) {
+                    if(Invitados.get(i).getHora().getEpochSecond()>Instant.now().getEpochSecond()){
+                        asis = new Asistencia(invitado);
+                    } else {
+                        asis = new Retraso(invitado);
+                    }
                 } else {
                     asis = new Asistencia(invitado);
                 }
