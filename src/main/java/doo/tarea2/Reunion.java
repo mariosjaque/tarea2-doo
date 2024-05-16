@@ -41,6 +41,7 @@ public abstract class Reunion {
      * @param horaPrevistaHH la hora (hora del dia) de la reunion
      * @param horaPrevistaMM minutos de la hora del dia de la reunion
      * @param duraPrev Duracion en minutos prevista para la reunion
+     * @param tipo Describe el tipo de la reunion
 -     */
     public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, tipoReunion tipo){
         fecha = fechaR;
