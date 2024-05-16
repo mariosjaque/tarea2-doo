@@ -14,7 +14,6 @@ import java.time.Instant;
 import java.util.Locale;
 
 import static java.time.temporal.ChronoUnit.*;
-import static jdk.nashorn.internal.objects.NativeMath.max;
 
 /** Clase Reunion
  * @author Luis Martinez
@@ -180,7 +179,10 @@ public abstract class Reunion {
             Empleado invitado = Invitados.get(i).getEmpleado();
             if(invitado.getID()==IDEmpleado){
                 Asistencia asis;
-                long horaCompromiso = (long) max(horaInicio.getEpochSecond(),Invitados.get(i).getHora().getEpochSecond());
+                long horaCompromiso = horaInicio.getEpochSecond();
+                if(Invitados.get(i).getHora().getEpochSecond()>horaCompromiso){
+                    horaCompromiso = Invitados.get(i).getHora().getEpochSecond();
+                }
                 if(Instant.now().getEpochSecond()>horaCompromiso){
                     asis = new Retraso(invitado);
                 } else {

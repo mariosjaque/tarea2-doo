@@ -42,7 +42,9 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e);
         }*/
+        reunion.entraReunion("3");
         reunion.finalizar();
+        System.out.println(reunion.obtenerRetrasos().size());
         System.out.println(reunion.obtenerTotalAsistencia());
         System.out.println(reunion.obtenerPorcentajeAsistencia());
         reunion.exportarInforme("C:/users/mario/informe.txt");
