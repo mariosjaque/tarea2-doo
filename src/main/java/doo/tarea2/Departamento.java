@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Departamento implements Invitable{
     /**
-     * String nombre nombre privado del empleado que participa
+     * String nombre del empleado que participa
      */
     private String nombre;
 
@@ -26,8 +26,6 @@ public class Departamento implements Invitable{
     }
 
     /**
-     * obtenerCantidadEmpleados()
-     *
      * Devuelve el numero de empleados en el departamento a ser invitados.
      * @param Empleados empleados que pertenecen al departamento
      * @return int que representa el numero
@@ -45,7 +43,6 @@ public class Departamento implements Invitable{
     }
 
     /**
-     * invitar
      * Genera invitaciones para todos los empleados que pertenecen al departamento.
      * Usa como parametro para el bucle for el tamaño de la lista de empleados.
      */
@@ -56,7 +53,6 @@ public class Departamento implements Invitable{
     }
 
     /**
-     * getNombre()
      * @return nombre Devuelve el nombre solicitado.
      */
     public String getNombre(){

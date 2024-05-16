@@ -20,7 +20,6 @@ public class ReunionVirtual extends Reunion {
     }
 
     /**
-     * getEnlace()
      * Permite obtener el contenido del enlace de reunion.
      * @return String con el enlace
      */
@@ -29,7 +28,6 @@ public class ReunionVirtual extends Reunion {
     }
 
     /**
-     * setEnlace()
      * Modifica el contenido del enlace de la reunion en cuestion.
      * @param enlace es el nuevo enlace
      */

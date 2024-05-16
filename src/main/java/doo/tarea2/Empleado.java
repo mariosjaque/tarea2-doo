@@ -31,21 +31,18 @@ public class Empleado implements Invitable{
         correo = CORREO;
     }
     /**
-     * getNombre()
      * @return nombre retorna el nombre ingresado.
      */
     public String getNombre(){
         return nombre;
     }
     /**
-     * getApellido()
      * @return apellidos retorna el apellido ingresado.
      */
     public String getApellidos(){
         return apellidos;
     }
     /**
-     * getCorreo()
      * @return Correo retorna el correo ingresado.
      */
     public String getCorreo(){

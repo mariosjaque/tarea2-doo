@@ -21,7 +21,6 @@ public class Retraso extends Asistencia{
     }
 
     /**
-     * getHora()
      * @return retorna hora del ingreso del empleado
      */
     public Instant getHora(){

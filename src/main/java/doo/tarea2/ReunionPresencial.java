@@ -19,7 +19,6 @@ public class ReunionPresencial extends Reunion {
     }
 
     /**
-     * getSala()
      * Permite obtener la sala de la reunion.
      * @return String con la sala
      */
@@ -28,7 +27,6 @@ public class ReunionPresencial extends Reunion {
     }
 
     /**
-     * modSala()
      * Modifica la sala indicada para la reunion en cuestion.
      * @param sala es la nueva sala
      */
