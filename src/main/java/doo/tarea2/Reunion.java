@@ -2,7 +2,6 @@ package doo.tarea2;
 import java.time.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +18,7 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 public abstract class Reunion {
     /**
      * Se crean las reuniones.
-     * Datos como fecha, hora y duracion falta menos.
+     * Datos como fecha, hora y duracion.
     */
     private Date fecha;
     private Instant horaPrevista;
@@ -27,13 +26,15 @@ public abstract class Reunion {
     private Instant horaInicio;
     private Instant horaFin;
     private Empleado Organizador;
+    private List<Invitacion> Invitados;
 
     /**
      *
      * Genera una reunion
      * @param org Empleado que organiza la reunion
      * @param fechaR la fecha de la reunion a organizar
-     * @param
+     * @param horaPrevistaHH la hora (hora del dia) de la reunion
+     * @param horaPrevistaMM minutos de la hora del dia de la reunion
      * @param duraPrev Duracion en minutos prevista para la reunion
 -     */
     public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev){
@@ -52,6 +53,11 @@ public abstract class Reunion {
      */
     public List obtenerAsistencias(Asistencia asistencia){
         return asistencia.getLista();
+    }
+
+    public float obtenerPorcentajeAsistencia(){
+
+        return 0;
     }
 
     /**
@@ -76,8 +82,9 @@ public abstract class Reunion {
         return asistencia.getLista().size();
     }
 
-    public float calcularTiempoReal(Instant a, Instant b){
-        return b.getEpochSecond()-a.getEpochSecond();
+    public float calcularTiempoReal(){
+        float tiemporeal = horaFin.getEpochSecond()-horaInicio.getEpochSecond();
+        return tiemporeal/60;
     }
 
     /**
@@ -86,7 +93,9 @@ public abstract class Reunion {
      */
     public void iniciar(){
         horaInicio = Instant.now();
-        fecha = new Date();
+        for(int i=0;i<Invitados.size();i++){
+
+        }
         System.out.println("La reunion empezo a las "+horaInicio);
     }
 
