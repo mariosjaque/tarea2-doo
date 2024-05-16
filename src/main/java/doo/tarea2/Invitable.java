@@ -1,5 +1,9 @@
 package doo.tarea2;
 
+import java.lang.ref.Reference;
+import java.time.Instant;
+import java.util.List;
+
 /**
  * Interface Invitable
  *
@@ -8,5 +12,5 @@ package doo.tarea2;
  * @author Mario Salgado
  */
 public interface Invitable {
-    void invitar();
+    void invitar(List<Invitacion> Invitados, Instant hora);
 }

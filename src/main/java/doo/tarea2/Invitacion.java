@@ -9,7 +9,18 @@ import java.time.Instant;
  */
 public class Invitacion {
     private Instant hora;
-    public Invitacion(){}
+    private Empleado emp;
+
+    public Invitacion(Empleado e, Instant horaReunion){
+        emp = e;
+        hora = horaReunion;
+    }
+    public Empleado getEmpleado(){
+        return emp;
+    }
+    public Instant getHora(){
+        return hora;
+    }
     public String toString(){
         return "Genera las invitaciones";
     }

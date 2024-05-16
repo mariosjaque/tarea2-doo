@@ -1,4 +1,5 @@
 package doo.tarea2;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +46,15 @@ public class Departamento implements Invitable{
     /**
      * Genera invitaciones para todos los empleados que pertenecen al departamento.
      * Usa como parametro para el bucle for el tamaño de la lista de empleados.
+     * @param Invitados lista de invitados a modificar
+     * @param hora hora de compromiso
      */
     @Override
-    public void invitar(){
-        for(int i=0;i<Lista.size();i++)
-            System.out.println("Se invito al empleado: "+Lista.get(i).getNombre()+" "+Lista.get(i).getApellidos());
+    public void invitar(List<Invitacion> Invitados, Instant hora){
+        for(int i=0;i<Lista.size();i++){
+            Invitacion nuevaInvitacion = new Invitacion(Lista.get(i),hora);
+            Invitados.add(nuevaInvitacion);
+        }
     }
 
     /**

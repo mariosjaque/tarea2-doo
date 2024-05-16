@@ -1,6 +1,7 @@
 package doo.tarea2;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Clase ReunionVirtual
@@ -15,8 +16,8 @@ public class ReunionVirtual extends Reunion {
      */
     private String enlace;
 
-    public ReunionVirtual(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo) {
-        super(org, fechaR, horaPrevistaHH, horaPrevistaMM, duraPrev, tipo);
+    public ReunionVirtual(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo, List<Invitacion> ListaInv) {
+        super(org, fechaR, horaPrevistaHH, horaPrevistaMM, duraPrev, tipo, ListaInv);
     }
 
     /**

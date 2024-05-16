@@ -1,6 +1,7 @@
 package doo.tarea2;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Clase ReunionPresencial
@@ -14,8 +15,8 @@ public class ReunionPresencial extends Reunion {
      * sala es privado para que solo sea visible cuando el programa lo estime necesario.
      */
     private String sala;
-    public ReunionPresencial(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo) {
-        super(org, fechaR, horaPrevistaHH, horaPrevistaMM, duraPrev, tipo);
+    public ReunionPresencial(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo, List<Invitacion> ListaInv) {
+        super(org, fechaR, horaPrevistaHH, horaPrevistaMM, duraPrev, tipo, ListaInv);
     }
 
     /**

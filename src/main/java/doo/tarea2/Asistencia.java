@@ -13,10 +13,18 @@ public class Asistencia {
 
     private Empleado emp;
 
+
+    /**
+     * Constructor de Asistencia
+     * @param e el empleado que asistió
+     */
     public Asistencia(Empleado e){
         emp = e;
     }
 
+    /**
+    * @return devuelve el empleado que asistió
+     */
     public Empleado getEmpleado(){
         return emp;
     }

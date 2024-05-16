@@ -1,5 +1,9 @@
 package doo.tarea2;
 
+import java.lang.ref.Reference;
+import java.time.Instant;
+import java.util.List;
+
 /**
  * Clase Empleado implementa Invitable
  *
@@ -31,6 +35,13 @@ public class Empleado implements Invitable{
         correo = CORREO;
     }
     /**
+     * @return ID retorna el ID del empleado
+     */
+    public String getID(){
+        return id;
+    }
+
+    /**
      * @return nombre retorna el nombre ingresado.
      */
     public String getNombre(){
@@ -50,16 +61,16 @@ public class Empleado implements Invitable{
     }
 
     /**
-     * Invitar
-     *
-     * Usando el nombre y apellido de un empleado se le asigna una invitacion mediante la clase Invitacion
+     * Genera invitacion para el empleado
+     * @param Invitados lista de invitados a modificar
+     * @param hora hora de compromiso
      */
     @Override
-    public void invitar(){
-
+    public void invitar(List<Invitacion> Invitados, Instant hora){
+        Invitacion nuevaInvitacion = new Invitacion(this,hora);
+        Invitados.add(nuevaInvitacion);
     }
     public String toString(){
         return "Crea un empleado, inicializando sus propiedades";
     }
-
 }

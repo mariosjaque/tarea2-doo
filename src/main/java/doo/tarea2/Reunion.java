@@ -6,11 +6,10 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 import java.time.Instant;
 
-import static java.time.temporal.ChronoUnit.HOURS;
-import static java.time.temporal.ChronoUnit.MINUTES;
+import static java.time.temporal.ChronoUnit.*;
+import static jdk.nashorn.internal.objects.NativeMath.max;
 
 /** Clase Reunion
  * @author Luis Martinez
@@ -43,14 +42,16 @@ public abstract class Reunion {
      * @param duraPrev Duracion en minutos prevista para la reunion
      * @param tipo Describe el tipo de la reunion
 -     */
-    public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo){
+    public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, int tipo, List<Invitacion> ListaInv){
         fecha = fechaR;
         horaPrevista = fecha.toInstant();
         horaPrevista = horaPrevista.plus(horaPrevistaHH, HOURS);
         horaPrevista = horaPrevista.plus(horaPrevistaMM, MINUTES);
+        horaPrevista = horaPrevista.minus(ZonedDateTime.now().getOffset().getTotalSeconds(), SECONDS);
         Organizador = org;
         duracionPrevista = Duration.ofMinutes(duraPrev);
         this.tipo = tipoReunion.values()[tipo];
+        Invitados = ListaInv;
     }
 
     /**
@@ -98,7 +99,6 @@ public abstract class Reunion {
     /**
      * @return Devuelve lista con empleados que hayan llegado despues del inicio
      */
-
     public List obtenerRetrasos(){
         List<Empleado> retrasos = null;
         for(int i=0;i<Asistentes.size();i++){
@@ -121,8 +121,8 @@ public abstract class Reunion {
      * @return Devuelve tiempo real de la reunion en minutos
      */
     public float calcularTiempoReal(){
-        float tiemporeal = horaFin.getEpochSecond()-horaInicio.getEpochSecond();
-        return tiemporeal/60;
+        Duration tiemporeal = Duration.between(horaInicio, horaFin);
+        return tiemporeal.toMinutes();
     }
 
     /**
@@ -149,20 +149,6 @@ public abstract class Reunion {
      */
     public void iniciar(){
         horaInicio = Instant.now();
-        Scanner Entrada = new Scanner(System.in);
-        for(int i=0;i<Invitados.size();i++){
-            Empleado e = Invitados.get(i).getEmpleado();
-            System.out.println("¿Está presente el empleado "+e.getNombre()+" "+e.getApellidos()+"? (Si/No): ");
-            String Frase = Entrada.nextLine();
-            while(Frase!="Si" && Frase!="No"){
-                System.out.println("Por favor responder validamente (Si/No): ");
-                Frase = Entrada.nextLine();
-            }
-            if(Frase=="Si") {
-                Asistencia asistente = new Asistencia(e);
-                Asistentes.add(asistente);
-            }
-        }
         System.out.println("La reunion empezo a las "+fechaHora.format(horaInicio));
     }
 
@@ -172,6 +158,27 @@ public abstract class Reunion {
     public void finalizar(){
         horaFin = Instant.now();
         System.out.println("La reunion finalizo a las "+fechaHora.format(horaFin));
+    }
+
+    /**
+     * Metodo para avisar cuando un empleado entra a la reunion.
+     * @param IDEmpleado indica el ID del empleado que entra.
+     */
+    public void entraReunion(String IDEmpleado){
+        for(int i=0;i<Invitados.size();i++){
+            Empleado invitado = Invitados.get(i).getEmpleado();
+            if(invitado.getID()==IDEmpleado){
+                Asistencia asis;
+                long horaCompromiso = (long) max(horaInicio.getEpochSecond(),Invitados.get(i).getHora().getEpochSecond());
+                if(Instant.now().getEpochSecond()>horaCompromiso){
+                    asis = new Retraso(invitado);
+                } else {
+                    asis = new Asistencia(invitado);
+                }
+                Asistentes.add(asis);
+            }
+        }
+
     }
 
     /**
