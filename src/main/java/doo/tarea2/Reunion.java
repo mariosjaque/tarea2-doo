@@ -4,17 +4,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/** Clase Reunion
+ * @author Luis Martinez
+ * @author Santiago Diaz
+*/
 public abstract class Reunion {
-
-/**
- * Clase Reunion
- *
- * Se crean las reuniones.
- */
-public class Reunion {
     /**
+     * Se crean las reuniones.
      * Datos como fecha, hora y duracion falta menos.
-     */
+    */
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
@@ -35,7 +33,7 @@ public class Reunion {
         n = n*60*60;
         horaPrevista = Instant.now();
         horaPrevista = horaPrevista.plusSeconds(n);
-        System.out.println("Muy bien la hora prevista de inicio sera a las: "+horaPrevista);
+        System.out.println("Muy bien, la hora prevista de inicio sera a las: "+horaPrevista);
         System.out.println("Cuanto sera la duracion prevista de la reunion en minutos?");
         n = entrada.nextLong();
         duracionPrevista = Duration.ofMinutes(n);
@@ -61,9 +59,9 @@ public class Reunion {
     }
 
     /**
-     * obteenerRetrasos
+     * obtenerRetrasos
      * @param retraso devuelve los retrazos del empleado
-     * @return
+     * @return Devuelve
      */
 
     public List obtenerRetrasos(Retraso retraso){

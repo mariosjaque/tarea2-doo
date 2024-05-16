@@ -3,7 +3,9 @@ package doo.tarea2;
 /**
  * enum tipoReunion
  *
- * Tiene los tipos de reunion que se usan comunmente y permite clasificr manualmente les hace un poquito mas.
+ * Tiene los tipos de reunion que se usan comunmente y permite clasificarlas.
+ * @author Mario Salgado
+ * @author Santiago Diaz
  */
 public enum tipoReunion {
     TECNICA("Técnica"),

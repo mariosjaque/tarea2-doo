@@ -5,6 +5,8 @@ package doo.tarea2;
  *
  * Crea un id unico para cada empleado y permite ordenar empleados e implementa la funcion
  * para ser invitable a traves de un conjunto de datos identificadores.
+ * @author Santiago Diaz
+ * @author Luis Martinez
  */
 public class Empleado implements Invitable{
 
