@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.time.Instant;
 
 import static java.time.temporal.ChronoUnit.HOURS;
 import static java.time.temporal.ChronoUnit.MINUTES;
@@ -27,6 +28,7 @@ public abstract class Reunion {
     private Instant horaInicio;
     private Instant horaFin;
     private Empleado Organizador;
+    private tipoReunion tipo;
     private List<Invitacion> Invitados;
     private List<Nota> Notas;
     private List<Asistencia> Asistentes;
@@ -40,13 +42,14 @@ public abstract class Reunion {
      * @param horaPrevistaMM minutos de la hora del dia de la reunion
      * @param duraPrev Duracion en minutos prevista para la reunion
 -     */
-    public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev){
+    public Reunion(Empleado org, Date fechaR, int horaPrevistaHH, int horaPrevistaMM, int duraPrev, tipoReunion tipo){
         fecha = fechaR;
         horaPrevista = fecha.toInstant();
         horaPrevista = horaPrevista.plus(horaPrevistaHH, HOURS);
         horaPrevista = horaPrevista.plus(horaPrevistaMM, MINUTES);
         Organizador = org;
         duracionPrevista = Duration.ofMinutes(duraPrev);
+        this.tipo = tipo;
     }
 
     /**
