@@ -4,8 +4,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase Reunion
+ *
+ * Se crean las reuniones.
+ */
 public class Reunion {
-
+    /**
+     * Datos como fecha, hora y duracion falta menos.
+     */
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
@@ -13,6 +20,10 @@ public class Reunion {
     private Instant horaInicio;
     private Instant horaFin;
 
+    /**
+     *
+     * Genera una invitacion tomando los datos y hora de la reunion a suceder
+-     */
     public Reunion(){
 
         long n;
@@ -28,12 +39,30 @@ public class Reunion {
         duracionPrevista = Duration.ofMinutes(n);
         System.out.println("Muy bien la duracion prevista sera de: "+duracionPrevista.getSeconds()/60+" minutos");
     }
+
+    /**
+     *
+     * @param asistencia
+     * @return Devuelve al empleado como presente.
+     */
     public List Asistencia(Asistencia asistencia){
         return asistencia.getLista();
     }
+
+    /**
+     *
+     * @param ausente Devuelve las ausencias de los empleados
+     * @return
+     */
     public List obtenerAusencias(Ausente ausente){
         return ausente.getLista();
     }
+
+    /**
+     * obteenerRetrasos
+     * @param retraso devuelve los retrazos del empleado
+     * @return
+     */
 
     public List obetenerRetrasos(Retraso retraso){
         return retraso.getLista();
@@ -42,20 +71,37 @@ public class Reunion {
         return asistencia.getLista().size();
     }
 
-    /*public int obtenerPorcentajeAsistencia(){
-    }*/
     public float calcularTiempoReal(Instant a, Instant b){
         return b.getEpochSecond()-a.getEpochSecond();
     }
+
+    /**
+     * iniciar
+     *
+     * @return la hora a la que comenzo la reunion
+     */
     public void iniciar(){
         horaInicio = Instant.now();
         fecha = new Date();
         System.out.println("La reunion empezo a las "+horaInicio);
     }
+
+    /**
+     * finalizar
+     *
+     * @return la hora en la que finalizo la reunion
+     */
     public void finalizar(){
         horaFin = Instant.now();
         System.out.println("La reunion finalizo a las "+horaFin);
     }
+
+    /**
+     *
+     * es un metodo que permite comparar la duracion estimada vs la original.
+     *
+     * @return cuanto debiera haber durado la reunion
+     */
     public Duration getDuracionPrevista(){
         return duracionPrevista;
     }

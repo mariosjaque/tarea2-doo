@@ -3,30 +3,38 @@ package doo.tarea2;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Clase Main
+ *
+ * Contiene los test de todo el programa.
+ * @author Luis Martinez, Mario Salgado y Santiago Diaz
+ * @version 1.0
+ *
+ */
 public class Main {
+
     public static void main(String[] args) {
 
         Scanner Entrada = new Scanner(System.in);
 
         Reunion reunionV = null;
-        while (true){
+        while (true) {
             System.out.println("Para reunion en linea escriba *Linea* para presencial *Presencial*");
             String Frase = Entrada.nextLine();
             Entrada.reset();
-            if(Objects.equals(Frase,"Linea")){
+            if (Objects.equals(Frase, "Linea")) {
                 ReunionVirtual reunion = new ReunionVirtual();
                 System.out.println("Escriba a continuacion el link de su reunion: ");
                 Frase = Entrada.nextLine();
                 reunion.setEnlace(Frase);
-                System.out.println("Muy bien su link entonces sera: "+Frase);
+                System.out.println("Muy bien su link entonces sera: " + Frase);
                 reunionV = reunion;
                 break;
-            }
-            else if(Objects.equals(Frase,"Presencial")){
+            } else if (Objects.equals(Frase, "Presencial")) {
                 ReunionPresencial reunion = new ReunionPresencial();
                 System.out.println("Escriba a continuacion el link de su reunion: ");
                 reunion.modSala(Frase);
-                System.out.println("Muy bien su sala entonces sera: "+Frase);
+                System.out.println("Muy bien su sala entonces sera: " + Frase);
                 reunionV = reunion;
                 break;
             }
@@ -44,8 +52,6 @@ public class Main {
         Ingenieria.AñadirEmpleado(Mario);
 
 
-
-
         while (true) {
             Scanner Entrada3 = new Scanner(System.in);
             System.out.println("Escriba 1 si desea invitar a un empleado en concreto, 2 para un Departamento y 3 si desea continuar");
@@ -61,7 +67,7 @@ public class Main {
                 }
 
 
-            } else if(numero == 1){
+            } else if (numero == 1) {
                 Scanner Entrada2 = new Scanner(System.in);
                 System.out.println("Indique el correo del empleado: ");
                 palabra = Entrada2.nextLine();
@@ -80,7 +86,7 @@ public class Main {
         try {
             //Simulamos la duracion de la reunion
             long numero2 = reunionV.getDuracionPrevista().getSeconds();
-            Thread.sleep(numero2*1000);
+            Thread.sleep(numero2 * 1000);
         } catch (Exception e) {
             System.out.println(e);
         }
