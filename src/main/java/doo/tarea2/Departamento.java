@@ -59,7 +59,7 @@ public class Departamento implements Invitable{
         return nombre;
     }
     public String toString(){
-        return "Crea una empesa, inicializando su nombre";
+        return "Crea un departamento de la empresa, inicializando su nombre";
     }
 
 }
