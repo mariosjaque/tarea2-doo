@@ -7,6 +7,7 @@ import java.util.Date;
  * Se crea con un super desde reunion original.
  * @author Santiago Diaz
  * @author Luis Martinez
+ * @author Mario Salgado
  */
 public class ReunionVirtual extends Reunion {
     /**

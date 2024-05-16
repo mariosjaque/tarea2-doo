@@ -7,6 +7,7 @@ import java.util.Date;
  * Se extiende de reunion y permite crear una reunion presencial y modificar sus datos.
  * @author Santiago Diaz
  * @author Luis Martinez
+ * @author Mario Salgado
  */
 public class ReunionPresencial extends Reunion {
     /**

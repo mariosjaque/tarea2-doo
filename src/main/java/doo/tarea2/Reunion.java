@@ -33,7 +33,6 @@ public abstract class Reunion {
     DateTimeFormatter fechaHora = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     /**
-     *
      * Genera una reunion
      * @param org Empleado que organiza la reunion
      * @param fechaR la fecha de la reunion a organizar
@@ -51,8 +50,6 @@ public abstract class Reunion {
     }
 
     /**
-     *
-     *
      * @return Devuelve la lista de asistencia.
      */
     public List obtenerAsistencias(){
@@ -64,21 +61,37 @@ public abstract class Reunion {
         return empAsistente;
     }
 
+    /**
+     * @return Devuelve porcentaje de asistentes
+     */
     public float obtenerPorcentajeAsistencia(){
-        return 0;
+        float porcentaje = obtenerTotalAsistencia()*100;
+        porcentaje/=Invitados.size();
+        return porcentaje;
     }
 
     /**
-     *
      * @return Devuelve lista de ausentes
      */
     public List obtenerAusencias(){
         List<Empleado> ausente = null;
+        for(int i=0;i<Invitados.size();i++){
+            boolean asistio=false;
+            Empleado invitado = Invitados.get(i).getEmpleado();
+            for(int j=0;j<Asistentes.size();j++){
+                Empleado asistente = Asistentes.get(i).getEmpleado();
+                if(invitado==asistente){
+                    asistio=true;
+                }
+            };
+            if(asistio==false){
+                ausente.add(invitado);
+            }
+        }
         return ausente;
     }
 
     /**
-     * obtenerRetrasos
      * @return Devuelve lista con empleados que hayan llegado despues del inicio
      */
 
@@ -102,7 +115,6 @@ public abstract class Reunion {
     }
 
     /**
-     * iniciar
      * Define la hora de inicio real de la reunion e imprime un mensaje correspondiente
      */
     public void iniciar(){
@@ -122,7 +134,6 @@ public abstract class Reunion {
     }
 
     /**
-     * finalizar
      * Finaliza la reunion e imprime un mensaje al respecto.
      */
     public void finalizar(){
@@ -131,8 +142,7 @@ public abstract class Reunion {
     }
 
     /**
-     * getDuracionPrevista()
-     * es un metodo que permite comparar la duracion estimada vs la original.
+     * es un metodo que permite obtener la duracion estimada ingresada al crear la reunion.
      * @return cuanto debiera haber durado la reunion
      */
     public Duration getDuracionPrevista(){
