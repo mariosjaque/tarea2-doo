@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+public abstract class Reunion {
+
 /**
  * Clase Reunion
  *
@@ -28,7 +30,7 @@ public class Reunion {
 
         long n;
         Scanner entrada = new Scanner(System.in);
-        System.out.println("¿En cuantas horas tiene previta empezar su reunion?");
+        System.out.println("¿En cuantas horas tiene previsto empezar su reunion?");
         n = entrada.nextLong();
         n = n*60*60;
         horaPrevista = Instant.now();
@@ -37,7 +39,7 @@ public class Reunion {
         System.out.println("Cuanto sera la duracion prevista de la reunion en minutos?");
         n = entrada.nextLong();
         duracionPrevista = Duration.ofMinutes(n);
-        System.out.println("Muy bien la duracion prevista sera de: "+duracionPrevista.getSeconds()/60+" minutos");
+        System.out.println("Muy bien, la duracion prevista sera de: "+duracionPrevista.getSeconds()/60+" minutos");
     }
 
     /**
@@ -64,7 +66,7 @@ public class Reunion {
      * @return
      */
 
-    public List obetenerRetrasos(Retraso retraso){
+    public List obtenerRetrasos(Retraso retraso){
         return retraso.getLista();
     }
     public int obtenerTotalAsistencias(Asistencia asistencia){
