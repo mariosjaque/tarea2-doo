@@ -105,13 +105,39 @@ public abstract class Reunion {
         }
         return retrasos;
     }
+
+    /**
+     * @return Devuelve numero de asistentes a reunion
+     */
     public int obtenerTotalAsistencia(){
         return Asistentes.size();
     }
 
+    /**
+     * @return Devuelve tiempo real de la reunion en minutos
+     */
     public float calcularTiempoReal(){
         float tiemporeal = horaFin.getEpochSecond()-horaInicio.getEpochSecond();
         return tiemporeal/60;
+    }
+
+    /**
+     * Agrega nota a la reunion
+     */
+    public void agregarNota(String contenido){
+        Nota nota = new Nota(contenido);
+        Notas.add(nota);
+    }
+
+    /**
+     * @return obtiene lista de todas las notas de la reunion
+     */
+    public String obtenerNotas(){
+        StringBuilder todasNotas = null;
+        for (Nota notaInforme : Notas) {
+            todasNotas.append("- ").append(notaInforme.getContenido()).append("\n");
+        }
+        return todasNotas.toString();
     }
 
     /**
@@ -121,14 +147,17 @@ public abstract class Reunion {
         horaInicio = Instant.now();
         Scanner Entrada = new Scanner(System.in);
         for(int i=0;i<Invitados.size();i++){
-            Empleado e = Invitados.get(i).getEmpleado;
-            System.out.println("¿Está presente el empleado "+e.getNombre()+" "+e.getApellidos()+"? (Si/No)");
+            Empleado e = Invitados.get(i).getEmpleado();
+            System.out.println("¿Está presente el empleado "+e.getNombre()+" "+e.getApellidos()+"? (Si/No): ");
             String Frase = Entrada.nextLine();
-            while(Frase!="Si" && Frase!="No")
-                if(Frase=="Si") {
-                    Asistencia asistente = new Asistencia(e);
-                    Asistentes.add(asistente);
-                }
+            while(Frase!="Si" && Frase!="No"){
+                System.out.println("Por favor responder validamente (Si/No): ");
+                Frase = Entrada.nextLine();
+            }
+            if(Frase=="Si") {
+                Asistencia asistente = new Asistencia(e);
+                Asistentes.add(asistente);
+            }
         }
         System.out.println("La reunion empezo a las "+fechaHora.format(horaInicio));
     }
