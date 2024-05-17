@@ -36,11 +36,10 @@ public class Departamento implements Invitable{
 
     /**
      * Devuelve el numero de empleados en el departamento a ser invitados.
-     * @param Empleados empleados que pertenecen al departamento
      * @return int que representa el numero
      */
-    public int obtenerCantidadEmpleados(List Empleados){
-        return Empleados.size();
+    public int obtenerCantidadEmpleados(){
+        return List.size();
     }
 
     /**

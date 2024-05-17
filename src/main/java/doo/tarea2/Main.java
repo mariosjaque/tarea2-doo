@@ -21,10 +21,12 @@ public class Main {
         Empleado Luis = new Empleado("1", "Luis", "Martinez Neira", "@gmail");
         Empleado Santiago = new Empleado("2", "Santiago", "Diaz Barra", "@outlook");
         Empleado Mario = new Empleado("3", "Mario", "Salgado Jaque", "@hotmail");
+        Empleado Farsante = new Empleado("4", "Fulanito", "Riquelme", "@hotmail");
         Departamento Ingenieria = new Departamento("Ingenieria");
         Ingenieria.AñadirEmpleado(Luis);
         Ingenieria.AñadirEmpleado(Santiago);
         Ingenieria.AñadirEmpleado(Mario);
+        Ingenieria.AñadirEmpleado(Farsante);
 
         ArrayList<Invitacion> invitados = new ArrayList<>();
         ReunionVirtual reunion = new ReunionVirtual(Admin, "2024-05-16", 17, 50, 2, 0,invitados);
@@ -46,6 +48,7 @@ public class Main {
         System.out.println(reunion.obtenerRetrasos().size());
         Retraso ret = (Retraso) reunion.obtenerRetrasos().get(0);
         System.out.println(ret.getHora());
+        System.out.println(reunion.obtenerAusencias().size());
         System.out.println(reunion.obtenerTotalAsistencia());
         System.out.println(reunion.obtenerPorcentajeAsistencia());
         reunion.exportarInforme("C:/users/mario/informe.txt");
