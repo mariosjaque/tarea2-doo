@@ -147,7 +147,10 @@ public abstract class Reunion {
      * @return obtiene lista de todas las notas de la reunion
      */
     public String obtenerNotas(){
-        StringBuilder todasNotas = null;
+        if(Notas.isEmpty()){
+            return null;
+        }
+        StringBuilder todasNotas = new StringBuilder("");
         for (Nota notaInforme : Notas) {
             todasNotas.append("- ").append(notaInforme.getContenido()).append("\n");
         }
