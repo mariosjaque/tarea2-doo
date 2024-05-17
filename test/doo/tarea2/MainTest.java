@@ -1,23 +1,13 @@
 package doo.tarea2;
 
-import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
 
-/**
- * Clase Main
- *
- * Contiene los test de todo el programa.
- * @author Luis Martinez
- * @author Mario Salgado
- * @author Santiago Diaz
- * @version 1.0
- *
- */
-public class Main {
+import static org.junit.jupiter.api.Assertions.*;
 
-    public static void main(String[] args) {
+class MainTest {
 
-        /*Empleado Admin = new Empleado("0", "Jefe", "Empresa", "@gmail");
+    public void maintest(){
+        Empleado Admin = new Empleado("0", "Jefe", "Empresa", "@gmail");
         Empleado Luis = new Empleado("1", "Luis", "Martinez Neira", "@gmail");
         Empleado Santiago = new Empleado("2", "Santiago", "Diaz Barra", "@outlook");
         Empleado Mario = new Empleado("3", "Mario", "Salgado Jaque", "@hotmail");
@@ -27,7 +17,6 @@ public class Main {
         Ingenieria.AñadirEmpleado(Santiago);
         Ingenieria.AñadirEmpleado(Mario);
         Ingenieria.AñadirEmpleado(Farsante);
-
         ArrayList<Invitacion> invitados = new ArrayList<>();
         ReunionVirtual reunion = new ReunionVirtual(Admin, "2024-05-16", 17, 50, 2, 0,invitados);
         reunion.setEnlace("https://testing.com");
@@ -51,7 +40,6 @@ public class Main {
         System.out.println(reunion.obtenerAusencias().size());
         System.out.println(reunion.obtenerTotalAsistencia());
         System.out.println(reunion.obtenerPorcentajeAsistencia());
-        reunion.exportarInforme("C:/users/mario/informe.txt");*/
+        reunion.exportarInforme("C:/users/mario/informe.txt");
     }
-
 }

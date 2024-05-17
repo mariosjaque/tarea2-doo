@@ -39,7 +39,7 @@ public class Departamento implements Invitable{
      * @return int que representa el numero
      */
     public int obtenerCantidadEmpleados(){
-        return List.size();
+        return Lista.size();
     }
 
     /**
